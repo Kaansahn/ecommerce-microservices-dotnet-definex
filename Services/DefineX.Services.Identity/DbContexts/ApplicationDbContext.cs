@@ -1,12 +1,15 @@
-using System;
+using DefineX.Services.Identity.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace DefineX.Services.Identity.DbContexts;
-
-public class ApplicationDbContext : DbContext
+namespace DefineX.Services.Identity.DbContexts
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+
+        }
 
     }
 }

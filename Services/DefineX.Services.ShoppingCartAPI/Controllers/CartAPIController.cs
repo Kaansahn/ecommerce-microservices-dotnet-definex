@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DefineX.Services.ShoppingCartAPI.Controllers
 {
-    [Route("api/cart")]
     [ApiExplorerSettings(IgnoreApi = true)]
+    [Route("api/cart")]
     public class CartAPIController : ControllerBase
     {
         private readonly ICartRepository _cartRepository;
@@ -42,8 +42,10 @@ namespace DefineX.Services.ShoppingCartAPI.Controllers
             return _response;
         }
 
+
+
         [HttpPost]
-        // [Authorize]
+        [Authorize]
         public async Task<object> Post([FromBody] CartDto cartDto)
         {
             try
@@ -129,14 +131,20 @@ namespace DefineX.Services.ShoppingCartAPI.Controllers
             return _response;
         }
 
+
+
+
         [HttpPost("Checkout2")]
         public async Task<object> Checkout2(CartDto cartDto)
         {
             try
             {
+
+
                 if (!string.IsNullOrEmpty(cartDto.CartHeader.CouponCode))
                 {
                     CouponDto coupon = await _couponRepository.GetCoupon(cartDto.CartHeader.CouponCode);
+
                 }
 
                 await _cartRepository.ClearCart(cartDto.CartHeader.UserId);

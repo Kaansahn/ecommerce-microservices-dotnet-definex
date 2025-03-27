@@ -10,17 +10,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DefineX.Services.ShoppingCartAPI.Controllers
 {
-    [Route("api/cartc")]
     [ApiExplorerSettings(IgnoreApi = true)]
-    public class CartAPICheckoutController : ControllerBase
+    [Route("api/cartc")]
+    public class CartAPICheckOutController : ControllerBase
     {
+
         private readonly ICartRepository _cartRepository;
         private readonly ICouponRepository _couponRepository;
         // private readonly IMessageBus _messageBus;
         protected ResponseDto _response;
         private readonly IRabbitMQCartMessageSender _rabbitMQCartMessageSender;
         // IMessageBus messageBus,
-        public CartAPICheckoutController(ICartRepository cartRepository,
+        public CartAPICheckOutController(ICartRepository cartRepository,
             ICouponRepository couponRepository, IRabbitMQCartMessageSender rabbitMQCartMessageSender)
         {
             _cartRepository = cartRepository;
@@ -31,10 +32,13 @@ namespace DefineX.Services.ShoppingCartAPI.Controllers
         }
 
         [HttpPost]
-        // [Authorize]
+        [Authorize]
         public async Task<object> Checkout([FromBody] CheckoutHeaderDto checkoutHeader)
+
+
+
+
         {
-            ArgumentNullException.ThrowIfNull(checkoutHeader);
             try
             {
                 CartDto cartDto = await _cartRepository.GetCartByUserId(checkoutHeader.UserId);

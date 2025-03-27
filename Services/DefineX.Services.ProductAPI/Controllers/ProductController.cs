@@ -53,7 +53,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost]
-    // [Authorize]
+    [Authorize]
     public async Task<object> Post([FromBody] ProductDto productDto)
     {
         try
@@ -72,7 +72,7 @@ public class ProductController : ControllerBase
 
 
     [HttpPut]
-    // [Authorize]
+    [Authorize]
     public async Task<object> Put([FromBody] ProductDto productDto)
     {
         try
@@ -91,7 +91,7 @@ public class ProductController : ControllerBase
 
     [HttpDelete]
     [Route("{id}")]
-    // [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public async Task<object> Delete(int id)
     {
         try

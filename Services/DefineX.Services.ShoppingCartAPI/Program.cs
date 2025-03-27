@@ -30,58 +30,57 @@ builder.Services.AddSingleton<IRabbitMQCartMessageSender, RabbitMQCartMessageSen
 builder.Services.AddControllers();
 builder.Services.AddHttpClient<ICouponRepository, CouponRepository>(u => u.BaseAddress =
   new Uri(builder.Configuration["ServiceUrls:CouponAPI"]));
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
 
-// builder.Services.AddAuthentication("Bearer")
-//     .AddJwtBearer("Bearer", options =>
-//     {
+        options.Authority = "https://localhost:44365/";
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateAudience = false
+        };
 
-//         options.Authority = "https://localhost:44365/";
-//         options.TokenValidationParameters = new TokenValidationParameters
-//         {
-//             ValidateAudience = false
-//         };
+    });
 
-//     });
-
-// builder.Services.AddAuthorization(options =>
-// {
-//     options.AddPolicy("ApiScope", policy =>
-//     {
-//         policy.RequireAuthenticatedUser();
-//         policy.RequireClaim("scope", "DefineX");
-//     });
-// });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ApiScope", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim("scope", "DefineX");
+    });
+});
 
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "DefineX.Services.ShoppingCartAPI", Version = "v1" });
     //c.EnableAnnotations();
-    // c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    // {
-    //     Description = @"Enter 'Bearer' [space] and your token",
-    //     Name = "Authorization",
-    //     In = ParameterLocation.Header,
-    //     Type = SecuritySchemeType.ApiKey,
-    //     Scheme = "Bearer"
-    // });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = @"Enter 'Bearer' [space] and your token",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
 
-    // c.AddSecurityRequirement(new OpenApiSecurityRequirement {
-    //                 {
-    //                     new OpenApiSecurityScheme
-    //                     {
-    //                         Reference = new OpenApiReference
-    //                         {
-    //                             Type=ReferenceType.SecurityScheme,
-    //                             Id="Bearer"
-    //                         },
-    //                         Scheme="oauth2",
-    //                         Name="Bearer",
-    //                         In=ParameterLocation.Header
-    //                     },
-    //                     new List<string>()
-    //                 }
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type=ReferenceType.SecurityScheme,
+                                Id="Bearer"
+                            },
+                            Scheme="oauth2",
+                            Name="Bearer",
+                            In=ParameterLocation.Header
+                        },
+                        new List<string>()
+                    }
 
-    //             });
+                });
 });
 
 var app = builder.Build();
@@ -95,9 +94,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
-// app.UseAuthentication();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
