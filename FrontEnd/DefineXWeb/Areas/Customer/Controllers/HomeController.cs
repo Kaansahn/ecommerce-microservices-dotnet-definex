@@ -115,6 +115,5 @@ namespace DefineXWeb.Areas.Customer.Controllers
         {
             return SignOut("Cookies", "oidc");
         }
-
     }
 }

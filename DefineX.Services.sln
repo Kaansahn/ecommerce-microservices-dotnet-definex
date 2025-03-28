@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefineXWeb", "FrontEnd\Defi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefineX.Services.CouponAPI", "Services\DefineX.Services.CouponAPI\DefineX.Services.CouponAPI.csproj", "{1EA065FB-B706-47EC-B190-9F0C9EF55B8E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{E7BDDBC6-9FD1-D1D7-ACD8-2C4F8E3D2461}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "Gateway\ApiGateway\ApiGateway.csproj", "{B998ACB4-CAF6-4AF2-9609-5296E8A6AECA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,10 @@ Global
 		{1EA065FB-B706-47EC-B190-9F0C9EF55B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EA065FB-B706-47EC-B190-9F0C9EF55B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EA065FB-B706-47EC-B190-9F0C9EF55B8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B998ACB4-CAF6-4AF2-9609-5296E8A6AECA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B998ACB4-CAF6-4AF2-9609-5296E8A6AECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B998ACB4-CAF6-4AF2-9609-5296E8A6AECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B998ACB4-CAF6-4AF2-9609-5296E8A6AECA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,5 +70,6 @@ Global
 		{1EF608CE-219E-4AFB-AD6F-132053AF1854} = {7149482E-F135-4FF6-8F76-A868FA05545C}
 		{766BE424-1FA4-49EB-97E8-B8AE728B1224} = {BA4CFFAE-76B2-483A-B371-6599273FF9AB}
 		{1EA065FB-B706-47EC-B190-9F0C9EF55B8E} = {7149482E-F135-4FF6-8F76-A868FA05545C}
+		{B998ACB4-CAF6-4AF2-9609-5296E8A6AECA} = {E7BDDBC6-9FD1-D1D7-ACD8-2C4F8E3D2461}
 	EndGlobalSection
 EndGlobal

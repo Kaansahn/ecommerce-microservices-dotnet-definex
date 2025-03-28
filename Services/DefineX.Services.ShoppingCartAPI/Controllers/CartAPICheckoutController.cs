@@ -34,10 +34,6 @@ namespace DefineX.Services.ShoppingCartAPI.Controllers
         [HttpPost]
         [Authorize]
         public async Task<object> Checkout([FromBody] CheckoutHeaderDto checkoutHeader)
-
-
-
-
         {
             try
             {
